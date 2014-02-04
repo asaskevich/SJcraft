@@ -18,11 +18,12 @@ public class ForestersHouseGenerator implements IWorldGenerator {
 			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		switch (world.provider.dimensionId) {
 		case 0:
-			generateSurface(world, random, chunkX * 16, chunkZ * 16);
+			generateStructure(world, random, chunkX * 16, chunkZ * 16);
 		}
 	}
 
-	public void generateSurface(World world, Random random, int chunkX,
+	// TODO edit generator
+	public void generateStructure(World world, Random random, int chunkX,
 			int chunkZ) {
 		// Chance of generating structure is 1 : 40 per chunk
 		if (random.nextInt(40) != 0) {

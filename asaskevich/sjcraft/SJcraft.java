@@ -1,5 +1,7 @@
 package asaskevich.sjcraft;
 
+import asaskevich.sjcraft.item.Items;
+import asaskevich.sjcraft.lib.ConfigHandler;
 import asaskevich.sjcraft.lib.ModInfo;
 import asaskevich.sjcraft.proxy.CommonProxy;
 import asaskevich.sjcraft.world.Generator;
@@ -20,12 +22,17 @@ public class SJcraft {
 
 	@EventHandler
 	public static void preInit(FMLPreInitializationEvent event) {
+		ConfigHandler.loadIDs(event.getSuggestedConfigurationFile());
 		Generator.init();
+		Items.init();
+
 	}
 
 	@EventHandler
 	public static void init(FMLInitializationEvent event) {
 		Generator.registerGenerators();
+		Items.addRecipes();
+		Items.addNames();
 	}
 
 	@EventHandler

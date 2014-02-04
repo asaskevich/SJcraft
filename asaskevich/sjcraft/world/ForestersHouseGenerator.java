@@ -45,7 +45,7 @@ public class ForestersHouseGenerator implements IWorldGenerator {
 		String biomeName = world.getBiomeGenForCoords(posX, posZ).biomeName;
 		while (world.getBlockId(posX, posY, posZ) != 0)
 			posY++;
-		// We can generate it only at blocks of grass
+		// We can generate it only at blocks of grass and only at forests
 		if (world.getBlockId(posX, posY - 1, posZ) != GRASS) {
 			return;
 		} else if (!biomeName.equals("Forest")) {

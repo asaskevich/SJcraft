@@ -1,1 +1,10 @@
+#Blocks
+tile.hellSand.name=Hell Sand
+tile.sugarBlock.name=Sugar Block
+tile.hellBush.name=Hell Bush
+
+#Items
 item.guitar.name=Guitar
+item.mysteriousLabel.name=Mysterious Label
+item.hellBushSeeds.name=Seeds of Hell Bush
+item.hellBud.name=Hell Bud

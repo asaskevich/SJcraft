@@ -1,5 +1,6 @@
 package asaskevich.sjcraft.lib;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 public class WorldEditor {
@@ -18,7 +19,7 @@ public class WorldEditor {
 	}
 
 	public void setToID(int posX, int posY, int posZ, int lengthX, int lengthY,
-			int lengthZ, int id) {
+			int lengthZ, Block id) {
 		for (int x = posX; x < posX + lengthX; x++)
 			for (int y = posY; y < posY + lengthY; y++)
 				for (int z = posZ; z < posZ + lengthZ; z++)

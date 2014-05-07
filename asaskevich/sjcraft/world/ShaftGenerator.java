@@ -3,6 +3,7 @@ package asaskevich.sjcraft.world;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.tileentity.TileEntityMobSpawner;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -14,30 +15,27 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class ShaftGenerator implements IWorldGenerator {
 	// Block ID's
-	final int GRASS = Block.grass.blockID;
-	final int DIRT = Block.dirt.blockID;
-	final int STONE = Block.stone.blockID;
-	final int COBBLESTONE = Block.cobblestone.blockID;
-	final int COBBLESTONE_MOSSY = Block.cobblestoneMossy.blockID;
-	final int FENCE = Block.fence.blockID;
-	final int WEB = Block.web.blockID;
-	final int LADDER = Block.ladder.blockID;
-	final int TORCH = Block.torchWood.blockID;
-	final int CHEST = Block.chest.blockID;
-	final int SPAWNER = Block.mobSpawner.blockID;
+	final Block GRASS = Blocks.grass;
+	final Block DIRT = Blocks.dirt;
+	final Block STONE = Blocks.stone;
+	final Block COBBLESTONE = Blocks.cobblestone;
+	final Block COBBLESTONE_MOSSY = Blocks.mossy_cobblestone;
+	final Block FENCE = Blocks.fence;
+	final Block WEB = Blocks.web;
+	final Block LADDER = Blocks.ladder;
+	final Block TORCH = Blocks.torch;
+	final Block CHEST = Blocks.chest;
+	final Block SPAWNER = Blocks.mob_spawner;
 
-	public void generate(Random rand, int chunkX, int chunkZ, World world,
-			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		// Chance to generate mineshaft is 1 : 20 per chunk
 		// Generating structure only in overworld
 		int dimension = world.provider.dimensionId;
-		if (rand.nextInt(20) == 0 && dimension == 0)
-			generateStructure(world, rand, chunkX * 16, chunkZ * 16);
+		if (rand.nextInt(20) == 0 && dimension == 0) generateStructure(world, rand, chunkX * 16, chunkZ * 16);
 	}
 
 	// TODO edit generator
-	public void generateStructure(World world, Random rand, int chunkX,
-			int chunkZ) {
+	public void generateStructure(World world, Random rand, int chunkX, int chunkZ) {
 		// Random position for generating structure
 		int posX = chunkX + rand.nextInt(16);
 		int posZ = chunkZ + rand.nextInt(16);
@@ -45,10 +43,10 @@ public class ShaftGenerator implements IWorldGenerator {
 		String biomeName = world.getBiomeGenForCoords(posX, posZ).biomeName;
 		int posY = rand.nextInt(100) + 1;
 
-		while (world.getBlockId(posX, posY, posZ) != 0)
+		while (!world.isAirBlock(posX, posY, posZ))
 			posY++;
 
-		if (world.getBlockId(posX, posY - 1, posZ) == 0) {
+		if (world.isAirBlock(posX, posY - 1, posZ)) {
 			return;
 		} else if (posY < 35 + depth) {
 			return;
@@ -72,16 +70,12 @@ public class ShaftGenerator implements IWorldGenerator {
 		for (int x = posX - 1; x <= posX + 1; x++)
 			for (int y = posY + 1; y <= posY + 1; y++)
 				for (int z = posZ - 1; z <= posZ + 1; z++)
-					world.setBlock(x, y, z,
-							rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY
-									: COBBLESTONE);
+					world.setBlock(x, y, z, rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY : COBBLESTONE);
 
 		for (int x = posX - 1; x <= posX + 1; x++)
 			for (int y = posY + 4; y <= posY + 4; y++)
 				for (int z = posZ - 1; z <= posZ + 1; z++)
-					world.setBlock(x, y, z,
-							rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY
-									: COBBLESTONE);
+					world.setBlock(x, y, z, rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY : COBBLESTONE);
 
 		for (int y = posY + 2; y < posY + 4; y++) {
 			world.setBlock(posX - 1, y, posZ - 1, FENCE);
@@ -97,13 +91,10 @@ public class ShaftGenerator implements IWorldGenerator {
 					} else {
 						world.setBlock(x, y, z, COBBLESTONE);
 					}
-					if (rand.nextInt(20) != 0)
-						world.setBlock(posX, y, posZ, LADDER, 3, 1 & 2 & 4);
+					if (rand.nextInt(20) != 0) world.setBlock(posX, y, posZ, LADDER, 3, 1 & 2 & 4);
 					if ((y % 5 == 0) && (y > posY - 20 - depth) && (y < posY)) {
 						world.setBlock(posX - 1, y, posZ, TORCH);
-						world.setBlock(posX - 2, y, posZ,
-								rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY
-										: COBBLESTONE);
+						world.setBlock(posX - 2, y, posZ, rand.nextInt(3) == 0 ? COBBLESTONE_MOSSY : COBBLESTONE);
 					}
 				}
 			}
@@ -123,7 +114,7 @@ public class ShaftGenerator implements IWorldGenerator {
 		for (int x = posX - 3; x <= posX + 3; x++) {
 			for (int y = posY - 28 - depth; y <= posY - 25 - depth; y++) {
 				for (int z = posZ - 3; z <= posZ + 3; z++) {
-					world.setBlock(x, y, z, 0);
+					world.setBlockToAir(x, y, z);
 				}
 			}
 		}
@@ -133,24 +124,19 @@ public class ShaftGenerator implements IWorldGenerator {
 			int px = posX + 3 - rand.nextInt(7);
 			int pz = posZ + 3 - rand.nextInt(7);
 			world.setBlock(px, posY - 28 - depth, pz, CHEST, 0, 2);
-			TileEntityChest tileentitychest = (TileEntityChest) world
-					.getBlockTileEntity(px, posY - 28 - depth, pz);
+			TileEntityChest tileentitychest = (TileEntityChest) world.getTileEntity(px, posY - 28 - depth, pz);
 
 			if (tileentitychest != null) {
-				ChestGenHooks info = ChestGenHooks
-						.getInfo(ChestGenHooks.DUNGEON_CHEST);
-				WeightedRandomChestContent.generateChestContents(rand,
-						info.getItems(rand), tileentitychest,
-						info.getCount(rand));
+				ChestGenHooks info = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST);
+				WeightedRandomChestContent.generateChestContents(rand, info.getItems(rand), tileentitychest, info.getCount(rand));
 			}
 		}
 		world.setBlock(posX, posY - depth - 28, posZ, SPAWNER, 0, 2);
 		// Generating monster spawner
-		TileEntityMobSpawner tileEntity = (TileEntityMobSpawner) world
-				.getBlockTileEntity(posX, posY - 28 - depth, posZ);
+		TileEntityMobSpawner tileEntity = (TileEntityMobSpawner) world.getTileEntity(posX, posY - 28 - depth, posZ);
 
 		if (tileEntity != null) {
-			tileEntity.getSpawnerLogic().setMobID(this.pickMobSpawner(rand));
+			tileEntity.func_145881_a().setEntityName(this.pickMobSpawner(rand));
 		}
 
 		for (int i = 0; i <= rand.nextInt(6); i++) {

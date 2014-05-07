@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sjcraft",
+  "name": "SJcraft",
+  "description": "Usual Minecraft mod by Alex Saskevich",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Alex Saskevich"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,30 +1,22 @@
-package asaskevich.sjcraft.item;
+package asaskevich.sjcraft.items;
 
 import java.util.Random;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import asaskevich.sjcraft.mod.ModInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import asaskevich.sjcraft.lib.ItemInfo;
-import asaskevich.sjcraft.lib.ModInfo;
 
 public class Guitar extends Item {
 	private String[] names = { "harp", "bd", "snare", "hat", "bassattack" };
 	private Random r = new Random();
 
-	public Guitar(int id) {
-		super(id);
+	public Guitar() {
+		this.setTextureName(ModInfo.ID + ":guitar");
 		this.setFull3D();
 		setCreativeTab(CreativeTabs.tabTools);
-	}
-
-	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		this.itemIcon = par1IconRegister.registerIcon(ModInfo.ID + ':'
-				+ ItemInfo.guitar_name);
 	}
 
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer,

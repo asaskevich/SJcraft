@@ -9,9 +9,11 @@ import asaskevich.sjcraft.mod.ModBlocks;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class HellSandGenerator implements IWorldGenerator {
-	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random rand, int chunkX, int chunkZ, World world,
+			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		int dimension = world.provider.dimensionId;
-		if (dimension == -1) generate(world, rand, chunkX * 16, chunkZ * 16);
+		if (dimension == -1)
+			generate(world, rand, chunkX * 16, chunkZ * 16);
 	}
 
 	// TODO edit generator
@@ -24,13 +26,15 @@ public class HellSandGenerator implements IWorldGenerator {
 			int j1 = par4 + rand.nextInt(4) - rand.nextInt(4);
 			int k1 = par5 + rand.nextInt(8) - rand.nextInt(8);
 
-			if (world.isAirBlock(i1, j1, k1) && world.getBlock(i1, j1 - 2, k1) == Blocks.netherrack) {
+			if (world.isAirBlock(i1, j1, k1)
+					&& world.getBlock(i1, j1 - 1, k1) == Blocks.netherrack) {
 				world.setBlock(i1, j1 - 1, k1, ModBlocks.hellSandBlock);
 				world.setBlock(i1, j1 - 1, k1 - 1, ModBlocks.hellSandBlock);
 				world.setBlock(i1 - 1, j1 - 1, k1, ModBlocks.hellSandBlock);
 				world.setBlock(i1 + 1, j1 - 1, k1, ModBlocks.hellSandBlock);
 				world.setBlock(i1, j1 - 1, k1 + 1, ModBlocks.hellSandBlock);
-				if (rand.nextInt(3) == 0) world.setBlock(i1, j1, k1, ModBlocks.hellBushBlock);
+				if (rand.nextInt(3) == 0)
+					world.setBlock(i1, j1, k1, ModBlocks.hellBushBlock);
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 package asaskevich.sjcraft.blocks;
 
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,8 +14,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class HellSandBlock extends BlockFalling {
-	final float EPS = 0.005f;
-	final float DELTA = 0.0125F;
+	final float	EPS		= 0.005f;
+	final float	DELTA	= 0.0125F;
 
 	public HellSandBlock() {
 		super();
@@ -52,7 +51,7 @@ public class HellSandBlock extends BlockFalling {
 
 	@Override
 	public void randomDisplayTick(World w, int x, int y, int z, Random r) {
-		if (isCollideWithWater(w, x, y, z)) w.createExplosion(null, x, y, z, 1F, false);
+		if (isCollideWithWater(w, x, y, z)) w.newExplosion(null,  x,  y,  z,  1F, false, false);
 		super.randomDisplayTick(w, x, y, z, r);
 	}
 

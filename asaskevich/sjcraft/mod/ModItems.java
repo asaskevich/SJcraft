@@ -1,10 +1,13 @@
 package asaskevich.sjcraft.mod;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.ChestGenHooks;
 import asaskevich.sjcraft.items.Guitar;
 import asaskevich.sjcraft.items.HellBud;
 import asaskevich.sjcraft.items.HellBushSeeds;
+import asaskevich.sjcraft.items.MagicWater;
 import asaskevich.sjcraft.items.MysteriousLabel;
 import asaskevich.sjcraft.lib.CustomWeightedRandomChestContent;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -14,12 +17,14 @@ public class ModItems {
 	public static MysteriousLabel	mysteriousLabel;
 	public static HellBushSeeds		hellBushSeeds;
 	public static HellBud			hellBud;
+	public static MagicWater		magicWater;
 
 	public static void initItems() {
 		guitar = new Guitar();
 		mysteriousLabel = new MysteriousLabel();
 		hellBud = new HellBud();
 		hellBushSeeds = new HellBushSeeds(ModBlocks.hellBushBlock, ModBlocks.hellSandBlock);
+		magicWater = new MagicWater();
 	}
 
 	public static void addNames() {
@@ -27,15 +32,20 @@ public class ModItems {
 		mysteriousLabel.setUnlocalizedName("mysteriousLabel");
 		hellBushSeeds.setUnlocalizedName("hellBushSeeds");
 		hellBud.setUnlocalizedName("hellBud");
+		magicWater.setUnlocalizedName("magicWater");
 	}
 
-	public static void addRecipes() {}
+	public static void addRecipes() {
+		// Fermented Spider Eye + Any Potion + Water -> Magic Water
+		GameRegistry.addShapelessRecipe(new ItemStack(magicWater), new Object[] { Items.fermented_spider_eye, Items.potionitem, Items.water_bucket });
+	}
 
 	public static void registerItems() {
 		GameRegistry.registerItem(guitar, "guitar");
 		GameRegistry.registerItem(mysteriousLabel, "mysteriousLabel");
 		GameRegistry.registerItem(hellBushSeeds, "hellBushSeeds");
 		GameRegistry.registerItem(hellBud, "hellBud");
+		GameRegistry.registerItem(magicWater, "magicWater");
 	}
 
 	public static void addDungeonItems() {

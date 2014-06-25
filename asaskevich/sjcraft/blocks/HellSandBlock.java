@@ -38,21 +38,23 @@ public class HellSandBlock extends BlockFalling {
 		super.onEntityCollidedWithBlock(w, x, y, z, entity);
 	}
 
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getCollisionBoundingBoxFromPool(World w, int x, int y, int z) {
 		return AxisAlignedBB.getAABBPool().getAABB((double) ((float) x) + DELTA, (double) y + DELTA, (double) ((float) z) + DELTA,
 				(double) ((float) (x + 1) - DELTA), (double) ((float) (y + 1) - DELTA), (double) ((float) (z + 1) - DELTA));
 	}
 
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("deprecation")
 	public AxisAlignedBB getSelectedBoundingBoxFromPool(World w, int x, int y, int z) {
 		return AxisAlignedBB.getAABBPool().getAABB((double) ((float) x) + DELTA, (double) y + DELTA, (double) ((float) z) + DELTA,
 				(double) ((float) (x + 1) - DELTA), (double) ((float) (y + 1) - DELTA), (double) ((float) (z + 1) - DELTA));
 	}
 
 	@Override
-	public void randomDisplayTick(World w, int x, int y, int z, Random r) {
-		if (isCollideWithWater(w, x, y, z)) w.newExplosion(null,  x,  y,  z,  1F, false, false);
-		super.randomDisplayTick(w, x, y, z, r);
+	public void randomDisplayTick(World world, int x, int y, int z, Random r) {
+		if (isCollideWithWater(world, x, y, z)) world.newExplosion(null, x, y, z, 1F, false, false);
+		super.randomDisplayTick(world, x, y, z, r);
 	}
 
 	private boolean isCollideWithWater(World w, int x, int y, int z) {

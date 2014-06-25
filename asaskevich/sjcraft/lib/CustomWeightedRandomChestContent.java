@@ -41,9 +41,6 @@ public class CustomWeightedRandomChestContent extends WeightedRandomChestContent
 		for (int j = 0; j < p_150706_3_; ++j) {
 			CustomWeightedRandomChestContent weightedrandomchestcontent = (CustomWeightedRandomChestContent) WeightedRandom.getRandomItem(p_150706_0_,
 					p_150706_1_);
-			int k = weightedrandomchestcontent.theMinimumChanceToGenerateItem
-					+ p_150706_0_.nextInt(weightedrandomchestcontent.theMaximumChanceToGenerateItem
-							- weightedrandomchestcontent.theMinimumChanceToGenerateItem + 1);
 			ItemStack[] stacks = weightedrandomchestcontent.generateChestContent(p_150706_0_, p_150706_2_);
 			for (ItemStack item : stacks) {
 				p_150706_2_.setInventorySlotContents(p_150706_0_.nextInt(p_150706_2_.getSizeInventory()), item);

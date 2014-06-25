@@ -24,6 +24,7 @@ public class MysteriousLabel extends Item {
 		this.setCreativeTab(CreativeTabs.tabMisc);
 		this.setMaxDamage(0);
 		this.setTextureName(ModInfo.ID + ":mysterious_label");
+		this.setMaxStackSize(32);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -65,17 +66,9 @@ public class MysteriousLabel extends Item {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List list, boolean par4) {
 		super.addInformation(stack, par2EntityPlayer, list, par4);
-		if (this.getDamage(stack) == 0) {
-			list.add("Warning! It can kill you!");
-			list.add("Explosions.");
-		}
-		if (this.getDamage(stack) == 1) {
-			list.add("Warning! It can kill you!");
-			list.add("Lightning Bolts.");
-		}
-		if (this.getDamage(stack) == 2) {
-			list.add("Warning! It can kill you!");
-			list.add("Setting Fire.");
-		}
+		list.add("Warning! It can kill you!");
+		if (this.getDamage(stack) == 0) list.add("Explosions.");
+		if (this.getDamage(stack) == 1) list.add("Lightning Bolts.");
+		if (this.getDamage(stack) == 2) list.add("Setting Fire.");
 	}
 }

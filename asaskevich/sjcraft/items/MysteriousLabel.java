@@ -1,6 +1,8 @@
 package asaskevich.sjcraft.items;
 
 import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -27,6 +29,11 @@ public class MysteriousLabel extends Item {
 		this.setMaxStackSize(32);
 	}
 
+	@SideOnly(Side.CLIENT)
+	public boolean hasEffect(ItemStack stack) {
+		return true;
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
@@ -37,14 +44,13 @@ public class MysteriousLabel extends Item {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9,
-			float par10) {
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
 		if (this.getDamage(stack) == 0) world.newExplosion(player, x + 0.0, y + 0.0, z + 0.0, 10f, true, true);
 		if (this.getDamage(stack) == 1) world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
 		if (this.getDamage(stack) == 2) {
 			List<Entity> entities = world.getLoadedEntityList();
 			for (Entity entity : entities)
-				if (entity.isCreatureType(EnumCreatureType.monster, false)) entity.setFire(100000);
+				if (entity.isCreatureType(EnumCreatureType.monster, false)) entity.setFire(100);
 		}
 		stack.stackSize--;
 		return true;

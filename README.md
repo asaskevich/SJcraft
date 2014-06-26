@@ -13,3 +13,5 @@ Completed:
 * Sugar Block
 * Hell Sand
 * Hell Bush, that grow on hell sand
+* Mysterious Label (or Plate) with some spells
+* Magic Water

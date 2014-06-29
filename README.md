@@ -9,6 +9,7 @@ Completed:
 * Structure "Mineshaft" in plains
 * Structure "Forester's house" in forests
 * Structure "Igloo" in ice lands
+* Structure "Destroyed Portal" in hells
 * Guitar
 * Sugar Block
 * Hell Sand

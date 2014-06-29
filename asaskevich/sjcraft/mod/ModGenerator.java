@@ -2,7 +2,7 @@ package asaskevich.sjcraft.mod;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import asaskevich.sjcraft.world.DestroyedPortalGenerator;
 import asaskevich.sjcraft.world.ForestersHouseGenerator;
 import asaskevich.sjcraft.world.HellSandGenerator;
 import asaskevich.sjcraft.world.IglooGenerator;
@@ -18,6 +18,7 @@ public class ModGenerator {
 		generatorList.add(new ForestersHouseGenerator());
 		generatorList.add(new IglooGenerator());
 		generatorList.add(new HellSandGenerator());
+		generatorList.add(new DestroyedPortalGenerator());
 	}
 
 	public static void registerGenerators() {

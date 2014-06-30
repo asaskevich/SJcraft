@@ -10,6 +10,7 @@ Completed:
 * Structure "Forester's house" in forests
 * Structure "Igloo" in ice lands
 * Structure "Destroyed Portal" in hells
+* Structure "Hell Well" in hells
 * Guitar
 * Sugar Block
 * Hell Sand

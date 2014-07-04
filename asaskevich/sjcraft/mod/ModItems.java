@@ -57,5 +57,11 @@ public class ModItems {
 																																		// bolt
 		ChestGenHooks.addItem(ChestGenHooks.MINESHAFT_CORRIDOR, new CustomWeightedRandomChestContent(mysteriousLabel, 1, 1, 1, 4, 2)); // Setting
 																																		// fire
+		// Generate magic labels in dungeons
+		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new CustomWeightedRandomChestContent(mysteriousLabel, 1, 1, 1, 4, 0)); // Explosion
+		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new CustomWeightedRandomChestContent(mysteriousLabel, 1, 1, 1, 4, 1)); // Lightning
+																																		// bolt
+		ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new CustomWeightedRandomChestContent(mysteriousLabel, 1, 1, 1, 4, 2)); // Setting
+																																		// fire
 	}
 }
